@@ -3,6 +3,13 @@
     "description": "支付宝支付",
     "type": "library",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "clown"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
     "autoload": {
         "psr-4": {
             "Clown\\Alipay\\": "src/"
@@ -10,12 +17,5 @@
         "files": [
             "src/helper.php"
         ]
-    },
-    "authors": [
-        {
-            "name": "clown"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require": {}
+    }
 }
