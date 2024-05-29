@@ -18,7 +18,7 @@ class AliPay
 
         $this->alipayConfig = new AlipayConfig();
         $this->alipayConfig->setAppId('9021000137654936');
-        $alipayConfig->setPrivateKey('MIIEpAIBAAKCAQEA1IyDInqhkLPH3Cz3+oBiVoOMzl7qg1blLi9oqYEtaXBDOlQA
+        $this->alipayConfig->setPrivateKey('MIIEpAIBAAKCAQEA1IyDInqhkLPH3Cz3+oBiVoOMzl7qg1blLi9oqYEtaXBDOlQA
 UXr6gq0EYoqF3ZRsBY/JJewtvpv2vTlLs/Yg645I+rMwp6YXqm5qm9qcgrIywCC0
 71+HJQbIq340rrk5IYYGIgOKO81JqL1e2qHNZpkjxed3SZhtO1VazAj7/6kUaiCk
 lyPiu1sdqmhoPKVLV8Heyorvu3wzsBrdAHOoCss84KNmZ4Cn/dDimcBbbjjbTx7m
@@ -44,14 +44,14 @@ vtHiwQKBgQC7rnh6tK1OpAHxnZiUH2Go9tPK905vSFEAccbvPKMAETIkUkQ6stLJ
 CT+gcsz1wRgDeURmyW/KeSgFq3qEqAX3pzpefMxkqS8byA2t4OrYQ1MoF1fDn1ID
 kzT8e5U3fa+1aBa9j0pnRaCtAiNavj6RqmWm4CdhB74dvfXfJOsZzg==');
         // 密钥模式
-        $alipayConfig->setAlipayPublicKey('MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1IyDInqhkLPH3Cz3+oBi
+        $this->alipayConfig->setAlipayPublicKey('MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1IyDInqhkLPH3Cz3+oBi
 VoOMzl7qg1blLi9oqYEtaXBDOlQAUXr6gq0EYoqF3ZRsBY/JJewtvpv2vTlLs/Yg
 645I+rMwp6YXqm5qm9qcgrIywCC071+HJQbIq340rrk5IYYGIgOKO81JqL1e2qHN
 Zpkjxed3SZhtO1VazAj7/6kUaiCklyPiu1sdqmhoPKVLV8Heyorvu3wzsBrdAHOo
 Css84KNmZ4Cn/dDimcBbbjjbTx7m+Nb8yhGGCH+10sSgkhwCGrJZ/6hjnLfCf8CA
 +Yqez4lITSnqUqpGO5gqAKjN3K5NXe4+u6jkcTeRGHQtmTBYbuYmurt9CyOaHpp+
 wQIDAQAB');
-        $alipayConfigUtil = new AlipayConfigUtil($alipayConfig);
+        $alipayConfigUtil = new AlipayConfigUtil($this->alipayConfig);
         $this->apiInstance->setAlipayConfigUtil($alipayConfigUtil);
         $model = new AlipayTradePayModel();
         $model->setOutTradeNo('20210817010101001');
