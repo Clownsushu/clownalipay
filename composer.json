@@ -10,7 +10,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "alipaysdk/openapi": "dev-master"
+        "alipaysdk/openapi": "3.0.0"
     },
     "autoload": {
         "psr-4": {
