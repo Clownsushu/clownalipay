@@ -10,11 +10,11 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "alipaysdk/openapi": "3.0.0"
+        "alipaysdk/openapi": "dev-master"
     },
     "autoload": {
         "psr-4": {
-            "Clown\\Alipay\\": "src/"
+            "clown\\alipay\\": "src/"
         },
         "files": [
             "src/helper.php"
