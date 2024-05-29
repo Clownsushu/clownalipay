@@ -9,7 +9,9 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "alipaysdk/openapi": "dev-master"
+    },
     "autoload": {
         "psr-4": {
             "Clown\\Alipay\\": "src/"
