@@ -10,7 +10,9 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "yansongda/pay": "3.7.*"
+        "yansongda/pay": "~3.7.0",
+        "guzzlehttp/guzzle": "^7.0",
+        "hyperf/pimple": "~2.2.0"
     },
     "autoload": {
         "psr-4": {
