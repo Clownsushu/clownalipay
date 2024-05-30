@@ -10,7 +10,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "lokielse/omnipay-alipay": "3.1.*"
+        "yansongda/pay": "3.7.*"
     },
     "autoload": {
         "psr-4": {
