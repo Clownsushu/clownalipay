@@ -1,72 +1,29 @@
 <?php
 namespace clown\alipay;
 
-use Alipay\OpenAPISDK\Api\AlipayTradeApi;
-use Alipay\OpenAPISDK\Util\AlipayConfigUtil;
-use Alipay\OpenAPISDK\Util\Model\AlipayConfig;
-use GuzzleHttp;
+use Omnipay\Omnipay;
 
 class AliPay
 {
-    protected $apiInstance;
-
-    protected $alipayConfig;
-
     public function __construct()
     {
-        $this->apiInstance = new AlipayTradeApi(new GuzzleHttp\Client());
+        $gateway = Omnipay::create('Alipay_AopPage');
+        $gateway->setSignType('RSA2'); // RSA/RSA2/MD5. Use certificate mode must set RSA2
+        $gateway->setAppId('9021000137654936');
+        $gateway->setPrivateKey('MIIEpQIBAAKCAQEAlgVxx2giS4KGrhrbgjpmn/2VQ5OnSoN27lLRzI3mxGXeII/NW4x/+gMBtlfQRBrvomfKPdFHycn0wGh86qiz1q5U5o6/PSTFGC7Tpt9/yRqaWXlfVsxkilZ7i8QhGyj6entA5CpALMpics15km4mO1vaZ1qP8IVQ0LkCAJs8anVPDRHKENYOyRwE4nL4Sl27KATXPJsLIUSQF+8sIARW/Yzttn07K4aybux2KIuvFgbxSdJg+NKvMHAN+U6vY8GqBC+KcYJTE/EYDf8bWOiT3NEMJupHofsZPQbOtUON553VR/bqLIjoJ++3mzBHCL4BFw/QrLdepxgHI0p7ttOTYQIDAQABAoIBAAgxVexY4H6VKzu41cH/5HjaRVuCZcFo+oa7WR+9pBuXoJDQqZtVSeviXCaUFxiRDAMnfeDwW+ZGNCqJykCaY+/WZ2aL5x+0sVrHu+FCFV1rKYC3YyB/WwI/BNI2LMSp8TvdHUcYk5aems/ALuJzR304X+4DARdWgHpVkCluUNdTaSFTqxN1wcOmiDujLQ9a8DzmNTzDryOigMLKSY6KLJhf6jMzAEhBDelqpuxot2zwbzXXoKeae6UvWei9yJqnQ0rQ5iiGRt/g5PXUpbXAotYBZhSsQlW8b+2aDquS1UVmyYcCK68ZJBuuk/FJb9/o61rBOWlgRGgwcKOTmhVvswECgYEA3mGOjGsMC+jKP7lFLwkeXsJ1RaMVGhqAKgAAck21MlQ9nX/dCy91QalJSCqsXN5e/+SwMdqkuM6eUi5Zkm33e55XPe+vg/OYqgbNY6JapcjRgyzq7Mz3yvpZw2PgcIim2jr8N6yK0XMgrZN817KrA08m8MaGD2Vq8wEPksp4FrECgYEArLN3ezlvgwajLYIz0PEix1fd9D1B2njhaThCiEPFukJqYah8B/tmedKLMX4BYWfym5zdn9R+19z9yc5FDp+JPMT2xZMH2sY8eUcY285rjeXqySHi0H8fp6sJcHxEp55VsHYTd9PWFu7718FchDKcYN740ENYc30giadTwSaY07ECgYEA17FsIApcPtjmAnTjA8ImcObP9GE/wHffw90IkdWJYG2Q7cjtT0ISy0M1TwgE8nbFUhIwS8q0ZoQRz8ghHQQIPSDRocNvS97kPlYmtPLuVUq43DCfFFuiJIA6vGeNc9k3bQg1RpLWelzeXz1ko5oqgSUuse78bMaDu3tV7ZzwaaECgYEAgRIP9hRS9wX65oQs3beaWomc5HDzyqgVL2JQty6PlEkW4K3fJMgLKnjkdrTJq1bYxtxR9qYFtqb/NdfnXKp3EufR1o+wix0lDS7JsV1wnLh85J1iupiHu/PkNiFp3ixDtoJIwoGbu8AYkIN+9X4tyWhbZKswa//UVYys1+pUxcECgYEA1tizZccVNR6ExAJSdSV0ii14zI701dxA85vA5/lCOxGqOq1GSIByuNlVYT+lVz+hqYxsjmOKYicu1hCLMtyKL0mXoMrCW7/m0x21K1oPj0v2iY134l79hBe6KSjfxje1/QrnN8hWAbhOFCqUsPnx9T7oNZmxpGk3WT9JLwRM/Y4=');
+        $gateway->setAlipayPublicKey('MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlyhlklhRYaWnB7gRIbJrXDN/y1ZZIkR/NlC1rRxwQTsK7T9NHcHvd1/sCyfiHYDL6GrCrz+JM8jjheW6YOqciZRwdGzibwRlQCrTIo4oRy6ZZTh96fkYZkl3Q0q0Jg2RTAG494VIh4kMxABc0h8waHQZfZsvhNrERmNW1owVSICSQCxYe0+66vtcVzuQ4BgMBIf6uUANyp5whxuOD6m5V7yeAzirNYXZiaiqNs56KJT4j++AtU6eV+aETYxdPCXBFDnSRrxMm4TdnRlQaio3nvauQ8bENWBBabrnVz2/FDtI5qDlNsqxENJ3SjHy59iUqh+3sMaTJregP4AO6vKaOQIDAQAB'); // Need not set this when used certificate mode
+        $gateway->setReturnUrl('http://erp.wljdzf.cn/return');
+        $gateway->setNotifyUrl('http://erp.wljdzf.cn/notify');
 
-        $this->alipayConfig = new AlipayConfig();
-        $this->alipayConfig->setAppId('9021000137654936');
-        $this->alipayConfig->setPrivateKey('MIIEpAIBAAKCAQEA1IyDInqhkLPH3Cz3+oBiVoOMzl7qg1blLi9oqYEtaXBDOlQA
-UXr6gq0EYoqF3ZRsBY/JJewtvpv2vTlLs/Yg645I+rMwp6YXqm5qm9qcgrIywCC0
-71+HJQbIq340rrk5IYYGIgOKO81JqL1e2qHNZpkjxed3SZhtO1VazAj7/6kUaiCk
-lyPiu1sdqmhoPKVLV8Heyorvu3wzsBrdAHOoCss84KNmZ4Cn/dDimcBbbjjbTx7m
-+Nb8yhGGCH+10sSgkhwCGrJZ/6hjnLfCf8CA+Yqez4lITSnqUqpGO5gqAKjN3K5N
-Xe4+u6jkcTeRGHQtmTBYbuYmurt9CyOaHpp+wQIDAQABAoIBAEdUqKWnlhUj4Izp
-ooc1EsuJ9nVDsVxGiz9Gtc89BOp/vHAUxM6TgQLd4bzYVDiamO385TqO2oM/gDzc
-v6UzkrS62Y8ZF9kLiqGt0KVhZmkOOK31zAMRgh9Q+YNkJXYFv0Ca4/ACVB/hszin
-5O9mobIu7qx6E7RlLTNeX8xdr4SKssueSiPYmM3FR35Dhy2Ystx5TvAG4OW6btt2
-YIAp6yEweIyOpQgqq3hy2XpfAxuAGBJvne0YFII+bTDCIrWDZ0TBwR5HsubDbYMZ
-ehu9MyLUXiFMFivThGQ5FU6n5oN4b5Z09bRjlQ/8VLdTmMgeQaJ1IXh1EnjtTm0i
-QSG3p8kCgYEA+wnVRNLfGSQ0adrDz6FfL4kb/lpH5cs6VwyIFNZcCwFYrQUooluq
-iZWBVBXdSUZnrUGRIkyPOnuFv77szMwAtHS+2fwsJ1426e0Z3qL+5Z7cOR72CuCQ
-oMtUS25/h/MWPyf0YIvDS9rzVO+n4A4ryyVrlwY7m5USjZPVSVWpl2sCgYEA2L/v
-fpA1RqolXFtgF6CbMDWWB8+pYtuF/i9xZm68w286cGsq2oBIJNe+dYXEU0jQFzu4
-RYmkFqSk+BdAmgV128VbaYh1MLdkP+a08hJaTrIlgU15Pk9RPGb76x01cFwJAykp
-bhLwPsu96NrtEAue8GZT4Egdn92RMsK+1/GNyYMCgYBes3frzazx3BGVuTxTEGpL
-EWspCb/DtWXdvtF7It54HFrqcl7A2Nm9q1Otd84RvWiRGIH6sWz6v+xVyF2maHL/
-oGb67sFtXIJUvugab9y+nK4xMjfZJJwKvImhJx8fFxnWW2k6Hp9e90sCSKJIyK/G
-o+gxgd1stNDZ7eHxF0qx3wKBgQDFlzNczVnD8Zfdee8/msneSPtcY5Km7DhaYCWg
-m5K5FszPbuLCDe+2pnaZ7DftNJN+mpKB0dgkTDOXdpsNzayDjIaozh0HLCfXmRmb
-E9//nadTGK1OgEAuMDO3QglVRJFysDN0hQ8+L74QaINz/SQHQ0FzVEqtUe7rt10C
-vtHiwQKBgQC7rnh6tK1OpAHxnZiUH2Go9tPK905vSFEAccbvPKMAETIkUkQ6stLJ
-CT+gcsz1wRgDeURmyW/KeSgFq3qEqAX3pzpefMxkqS8byA2t4OrYQ1MoF1fDn1ID
-kzT8e5U3fa+1aBa9j0pnRaCtAiNavj6RqmWm4CdhB74dvfXfJOsZzg==');
-        // 密钥模式
-        $this->alipayConfig->setAlipayPublicKey('MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1IyDInqhkLPH3Cz3+oBi
-VoOMzl7qg1blLi9oqYEtaXBDOlQAUXr6gq0EYoqF3ZRsBY/JJewtvpv2vTlLs/Yg
-645I+rMwp6YXqm5qm9qcgrIywCC071+HJQbIq340rrk5IYYGIgOKO81JqL1e2qHN
-Zpkjxed3SZhtO1VazAj7/6kUaiCklyPiu1sdqmhoPKVLV8Heyorvu3wzsBrdAHOo
-Css84KNmZ4Cn/dDimcBbbjjbTx7m+Nb8yhGGCH+10sSgkhwCGrJZ/6hjnLfCf8CA
-+Yqez4lITSnqUqpGO5gqAKjN3K5NXe4+u6jkcTeRGHQtmTBYbuYmurt9CyOaHpp+
-wQIDAQAB');
-        $alipayConfigUtil = new AlipayConfigUtil($this->alipayConfig);
-        $this->apiInstance->setAlipayConfigUtil($alipayConfigUtil);
-        $model = new AlipayTradePayModel();
-        $model->setOutTradeNo('20210817010101001');
-        $model->setTotalAmount('0.011');
-        $model->setSubject('测试商品');
-        $model->setScene('bar_code');
-        $model->setAuthCode('28763443825664394');
+        $response = $gateway->purchase()->setBizContent([
+            'subject'      => 'test',
+            'out_trade_no' => date('YmdHis') . mt_rand(1000, 9999),
+            'total_amount' => '0.01',
+            'product_code' => 'FAST_INSTANT_TRADE_PAY',
+        ])->send();
 
-        try {
-            $result = $this->apiInstance->pay($model);
-            print_r($result);
-        } catch (ApiException $e) {
-            echo 'Exception when calling AlipayTradeApi->pay: ', $e->getMessage(), PHP_EOL;
-            echo 'body: ', $e->getResponseBody(), PHP_EOL;
-            echo 'header: ', $e->getResponseHeaders(), PHP_EOL;
-        }
+        $url = $response->getRedirectUrl();
+
+        hash($url);
     }
 }

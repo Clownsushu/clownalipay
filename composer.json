@@ -10,7 +10,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "alipaysdk/openapi": "3.0.*"
+        "lokielse/omnipay-alipay": "dev-master"
     },
     "autoload": {
         "psr-4": {
@@ -19,5 +19,10 @@
         "files": [
             "src/helper.php"
         ]
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     }
 }
