@@ -24,6 +24,6 @@ class AliPay
 
         $url = $response->getRedirectUrl();
 
-        hash($url);
+        halt($url);
     }
 }
