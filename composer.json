@@ -10,7 +10,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "lokielse/omnipay-alipay": "dev-master"
+        "lokielse/omnipay-alipay": "3.1.*"
     },
     "autoload": {
         "psr-4": {
